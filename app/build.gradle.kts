@@ -1,6 +1,9 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -15,6 +18,15 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        val keyStoreFile = project.rootProject.file("secretkeys.properties")
+        val properties = Properties()
+        properties.load(keyStoreFile.inputStream())
+
+        val googleClientId = properties.get("GOOGLE_CLIENT_ID") ?: ""
+
+        buildConfigField("String", "GOOGLE_CLIENT_ID", googleClientId.toString())
+
     }
 
     buildTypes {
@@ -33,6 +45,11 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
+        buildConfig = true
+    }
 }
 
 dependencies {
@@ -45,4 +62,16 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation ("androidx.credentials:credentials:1.5.0-rc01")
+    implementation ("androidx.credentials:credentials-play-services-auth:1.5.0-rc01")
+    implementation ("com.google.android.libraries.identity.googleid:googleid:1.1.1")
+
+    // Firebase
+    implementation(platform("com.google.firebase:firebase-bom:33.8.0"))
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
+
+
+
 }
