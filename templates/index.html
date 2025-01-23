@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedMate</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container{
+            height:100vh;
+            background: #5a5a5a;
+            display: flex;
+            justify-content:center;
+            
+        }
+        .input-box{
+            width: 40%;
+            display: flex;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+        }
+        .response{
+            max-width: 75%;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="response">
+            {% if response %}
+            {{response}}
+            {% endif %}
+        </div>
+        <div class="input-box">
+            <form method="post">
+                {% csrf_token %}
+                <input type="text" name="query" placeholder="Enter your query..">
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
