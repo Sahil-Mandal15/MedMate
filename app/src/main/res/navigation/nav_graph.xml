@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/landingScreenFragment">
+
+    <fragment
+        android:id="@+id/landingScreenFragment"
+        android:name="com.sahilm.medmate.view.fragments.LandingScreenFragment"
+        android:label="fragment_landing_screen"
+        tools:layout="@layout/fragment_landing_screen" >
+        <action
+            android:id="@+id/action_landingScreenFragment_to_authScreenFragment"
+            app:destination="@id/authScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/authScreenFragment"
+        android:name="com.sahilm.medmate.view.fragments.AuthScreenFragment"
+        android:label="fragment_auth_screen"
+        tools:layout="@layout/fragment_auth_screen" />
+</navigation>

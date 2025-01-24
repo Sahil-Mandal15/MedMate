@@ -19,13 +19,13 @@ class AuthClient(
     private val context: Context
 ) {
 
-    private var credentialManager: CredentialManager? = null
+    private var credentialManager: CredentialManager? = CredentialManager.create(context)
     private var firebaseAuth = FirebaseAuth.getInstance()
     private val googleClientId = BuildConfig.GOOGLE_CLIENT_ID
 
     suspend fun signIn () : Boolean {
         if (isSignedIn()) {
-            true
+            return true
         }
         try {
             val result = getCredentialRequest()
