@@ -23,4 +23,24 @@
 
     </FrameLayout>
 
+    <FrameLayout
+        android:id="@+id/fm_bottomNavView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".view.MainActivity"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/bottom_nav_view"
+            android:name="com.sahilm.medmate.view.fragments.BottomNavFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_bottom_nav"
+            />
+
+    </FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

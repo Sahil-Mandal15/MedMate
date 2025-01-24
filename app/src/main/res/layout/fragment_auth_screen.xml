@@ -20,6 +20,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_marginTop="16dp"
+            android:scaleType="centerCrop"
+            android:alpha="0.4"
+            android:src="@drawable/horizontal_line"/>
+
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/profile_image"
@@ -39,6 +47,14 @@
             android:textColor="@color/md_theme_onSurface"
             android:textSize="24sp"
             android:textStyle="bold"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_marginTop="16dp"
+            android:scaleType="centerCrop"
+            android:alpha="0.4"
+            android:src="@drawable/horizontal_line"/>
 
 
     </LinearLayout>
