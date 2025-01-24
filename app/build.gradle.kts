@@ -76,6 +76,10 @@ dependencies {
 
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
+    // Data Store
+    implementation("androidx.datastore:datastore-preferences:1.1.2")
+    implementation("androidx.datastore:datastore-preferences-core:1.1.2")
+
 
 
 }

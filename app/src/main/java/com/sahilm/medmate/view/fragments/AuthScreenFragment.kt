@@ -16,7 +16,7 @@ class AuthScreenFragment : Fragment() {
 
     private var _binding: FragmentAuthScreenBinding? = null
     private val binding get() = _binding!!
-    lateinit var authClient: AuthClient
+    private lateinit var authClient: AuthClient
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,5 +37,11 @@ class AuthScreenFragment : Fragment() {
                 authClient.signIn()
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        authClient.clearCredentialManager()
     }
 }

@@ -6,14 +6,25 @@ import androidx.credentials.CredentialManager
 import androidx.credentials.CustomCredential
 import androidx.credentials.GetCredentialRequest
 import androidx.credentials.GetCredentialResponse
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.preferencesDataStore
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.sahilm.medmate.BuildConfig
+import com.sahilm.medmate.model.LoginState
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.tasks.await
+
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore("user_pref")
 
 class AuthClient(
     private val context: Context
@@ -22,6 +33,40 @@ class AuthClient(
     private var credentialManager: CredentialManager? = CredentialManager.create(context)
     private var firebaseAuth = FirebaseAuth.getInstance()
     private val googleClientId = BuildConfig.GOOGLE_CLIENT_ID
+
+    companion object {
+        val IS_LOGGED_IN = booleanPreferencesKey("is_logged_in")
+        val USER_EMAIL = stringPreferencesKey("user_email")
+        val USER_TOKEN_ID = stringPreferencesKey("user_token_id")
+        val USER_NAME = stringPreferencesKey("user_name")
+        val USER_PFP_URI = stringPreferencesKey("user_pfp_uri")
+    }
+
+    suspend fun saveUserDetails(
+        isLoggedIn: Boolean,
+        userEmail: String = "",
+        tokenId: String = "",
+        userName: String = "",
+        userPhotoUri: String =""
+    ) {
+        context.dataStore.edit { preferences ->
+            preferences[IS_LOGGED_IN] = isLoggedIn
+            preferences[USER_EMAIL] = userEmail
+            preferences[USER_TOKEN_ID] = tokenId
+            preferences[USER_NAME] = userName
+            preferences[USER_PFP_URI] = userPhotoUri
+        }
+    }
+
+    val loginState: Flow<LoginState> = context.dataStore.data.map { preferences ->
+        LoginState(
+            isLoggedIn = preferences[IS_LOGGED_IN] ?: false,
+            userEmail = preferences[USER_EMAIL] ?: "",
+            userName = preferences[USER_NAME] ?: "",
+            tokenId = preferences[USER_TOKEN_ID] ?: "",
+            userPhotoUri = preferences[USER_PFP_URI] ?: ""
+        )
+    }
 
     suspend fun signIn () : Boolean {
         if (isSignedIn()) {
@@ -51,12 +96,8 @@ class AuthClient(
         return credentialManager!!.getCredential(context, request)
     }
 
-    fun isSignedIn(): Boolean {
-        if (firebaseAuth.currentUser != null) {
-            return true
-        } else {
-            return false
-        }
+    private fun isSignedIn(): Boolean {
+        return firebaseAuth.currentUser != null
     }
 
     suspend fun signOut() {
@@ -84,6 +125,16 @@ class AuthClient(
                     tokenCredential.idToken, null
                 )
                 val authResult = firebaseAuth.signInWithCredential(authCredential).await()
+
+                authResult.user?.let {
+                    saveUserDetails(
+                        isLoggedIn = true,
+                        userName = tokenCredential.displayName ?: "",
+                        userEmail = it.email ?: "",
+                        userPhotoUri = tokenCredential.profilePictureUri.toString(),
+                        tokenId = tokenCredential.idToken
+                    )
+                }
 
                 return authResult.user != null
             } catch (e: GoogleIdTokenParsingException) {
