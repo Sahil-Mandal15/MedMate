@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.google.rpc.context.AttributeContext.Auth
 import com.sahilm.medmate.R
 import com.sahilm.medmate.auth.AuthClient
@@ -27,6 +28,7 @@ class AuthScreenFragment : Fragment() {
         return (binding.root)
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -35,13 +37,8 @@ class AuthScreenFragment : Fragment() {
         binding.llBtnSignIn.setOnClickListener {
             lifecycleScope.launch {
                 authClient.signIn()
+                findNavController().navigate(R.id.action_authScreenFragment_to_homeScreenFragment)
             }
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-
-        authClient.clearCredentialManager()
     }
 }

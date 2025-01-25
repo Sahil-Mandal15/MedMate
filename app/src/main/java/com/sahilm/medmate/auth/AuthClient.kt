@@ -21,6 +21,7 @@ import com.sahilm.medmate.BuildConfig
 import com.sahilm.medmate.model.LoginState
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.tasks.await
 
@@ -135,6 +136,7 @@ class AuthClient(
                         tokenId = tokenCredential.idToken
                     )
                 }
+                println("AuthClient, DataStore: ${loginState.first()}")
 
                 return authResult.user != null
             } catch (e: GoogleIdTokenParsingException) {

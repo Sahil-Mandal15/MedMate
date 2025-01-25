@@ -26,16 +26,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         _binding = ActivityMainBinding.inflate(layoutInflater)
-        lifecycleScope.launch {
-            checkLoginState()
-        }
         setContentView(binding.root)
 
         val navHostFragment = supportFragmentManager
-            .findFragmentById(R.id.bottom_nav_view) as NavHostFragment
+            .findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
 
         authClient = AuthClient(this)
+
+        lifecycleScope.launch {
+            println("MainActivity, performing CheckLoginState")
+            checkLoginState()
+        }
+
+
+
+
 
 
         navController.addOnDestinationChangedListener { _, currentDestination, _  ->
@@ -59,17 +65,22 @@ class MainActivity : AppCompatActivity() {
     private suspend fun checkLoginState() {
         try {
             val loginState = authClient.loginState.first()
+            println("MainActivity, LoginState - ${loginState.isLoggedIn}")
 
             val startDestination = if (loginState.isLoggedIn) {
+                println("MainActivity, Opening homescreenfragment")
                 R.id.homeScreenFragment
             } else {
+                println("MainActivity, Opening landingscreenfragmnet")
                 R.id.landingScreenFragment
             }
+            println("MainActivity, startdestination = $startDestination")
 
             val navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
             navGraph.setStartDestination(startDestination)
             navController.graph = navGraph
         } catch (e: Exception) {
+            println("MainActivity" + "Exception while checking login state: $e")
             navController.navigate(R.id.landingScreenFragment)
         }
     }
