@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "686243266021-c3vtcin5ist3dm3a8ogac5o9qdtfouvb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sahilm.medmate",
+            "certificate_hash": "cda261339d75823fc35646a57b39d8e4d35286d4"
+          }
+        },
+        {
           "client_id": "686243266021-bvba7cf1jvaojtr327k3tub3hsofaef5.apps.googleusercontent.com",
           "client_type": 3
         }

@@ -37,7 +37,9 @@ class AuthScreenFragment : Fragment() {
         binding.llBtnSignIn.setOnClickListener {
             lifecycleScope.launch {
                 authClient.signIn()
-                findNavController().navigate(R.id.action_authScreenFragment_to_homeScreenFragment)
+                if (authClient.isSignedIn()) {
+                    findNavController().navigate(R.id.action_authScreenFragment_to_homeScreenFragment)
+                }
             }
         }
     }

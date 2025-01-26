@@ -97,7 +97,7 @@ class AuthClient(
         return credentialManager!!.getCredential(context, request)
     }
 
-    private fun isSignedIn(): Boolean {
+    fun isSignedIn(): Boolean {
         return firebaseAuth.currentUser != null
     }
 
@@ -121,6 +121,7 @@ class AuthClient(
         ) {
             try {
                 val tokenCredential = GoogleIdTokenCredential.createFrom(credential.data)
+                println("AuthClient, tokenCredential created ${tokenCredential.displayName}")
 
                 val authCredential = GoogleAuthProvider.getCredential(
                     tokenCredential.idToken, null
