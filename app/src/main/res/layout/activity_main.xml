@@ -10,7 +10,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         tools:context=".view.MainActivity"
         app:layout_constraintBottom_toTopOf="@id/fm_bottomNavView">
 
@@ -31,7 +31,8 @@
         tools:context=".view.MainActivity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="visible">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/bottom_nav_view"
@@ -39,7 +40,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:layout="@layout/fragment_bottom_nav"
-            android:visibility="gone"
             />
 
     </FrameLayout>

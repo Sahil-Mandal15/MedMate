@@ -24,8 +24,10 @@ android {
         properties.load(keyStoreFile.inputStream())
 
         val googleClientId = properties.get("GOOGLE_CLIENT_ID") ?: ""
+        val spoonacularApiKey = properties.get("SPOONACULAR_API_Key") ?: ""
 
         buildConfigField("String", "GOOGLE_CLIENT_ID", googleClientId.toString())
+        buildConfigField("String", "SPOONACULAR_API_KEY", spoonacularApiKey.toString())
 
     }
 
@@ -79,6 +81,11 @@ dependencies {
     // Data Store
     implementation("androidx.datastore:datastore-preferences:1.1.2")
     implementation("androidx.datastore:datastore-preferences-core:1.1.2")
+
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
 
 
 

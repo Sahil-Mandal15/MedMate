@@ -5,13 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.sahilm.medmate.R
+import androidx.lifecycle.lifecycleScope
+import com.sahilm.medmate.BuildConfig
 import com.sahilm.medmate.databinding.FragmentHomeScreenBinding
+import com.sahilm.medmate.repository.MedmateRepository
+import com.sahilm.medmate.viewmodel.MedMateViewModel
+import kotlinx.coroutines.launch
 
 class HomeScreenFragment : Fragment() {
 
     private var _binding: FragmentHomeScreenBinding? = null
     private val binding get() = _binding!!
+    private lateinit var medMateViewModel: MedMateViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,5 +26,14 @@ class HomeScreenFragment : Fragment() {
 
         _binding = FragmentHomeScreenBinding.inflate(inflater, container, false)
         return (binding.root)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val medmateRepository = MedmateRepository()
+        val medMateViewModel = MedMateViewModel(medmateRepository, requireContext())
+
+
     }
 }
