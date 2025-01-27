@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         val todaysDate = calendar.time.toString().substring(4, 11)
 
         medMateViewModel.foodFactDetails.collect { details ->
-            if (details.factTime != calendar.time.toString().substring(4, 11)) {
+            if (details.factTime != todaysDate) {
                 medMateViewModel.getFoodFact(foodFactApiKey)
             }
         }

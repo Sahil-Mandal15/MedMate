@@ -19,20 +19,52 @@
         android:id="@+id/ll_userInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="8dp"
             android:layout_marginStart="12dp"
-            android:text="Hello User,"
-            android:textSize="28sp"
-            android:fontFamily="@font/lato"
-            android:textStyle="bold"/>
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_hello"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello"
+                android:textSize="20sp"
+                android:fontFamily="@font/lato"
+                android:textStyle="bold"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_userName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:layout_marginStart="12dp"
+                android:textSize="28sp"
+                android:fontFamily="@font/lato"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_userPfp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="198dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/new_medmate_logo"
+            app:civ_border_width="2dp"
+            app:civ_border_color="@color/md_theme_primary"/>
+
+    </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="match_parent"
@@ -40,13 +72,11 @@
             android:layout_marginTop="13dp"
             android:scaleType="centerCrop"
             android:alpha="0.4"
-            android:src="@drawable/horizontal_line"/>
+            android:src="@drawable/horizontal_line"
+            app:layout_constraintTop_toBottomOf="@id/ll_userInfo"/>
 
 
-
-    </LinearLayout>
-
-    <LinearLayout
+        <LinearLayout
         android:id="@+id/ll_introMedMate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,6 +85,7 @@
         android:padding="18dp"
         android:elevation="64dp"
         android:background="@drawable/circle_background"
+            android:visibility="visible"
         app:layout_constraintTop_toBottomOf="@id/ll_userInfo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -113,7 +144,9 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:src="@drawable/chevron"
+                android:tint="@color/md_theme_secondary"
                 android:layout_marginStart="48dp"
+                android:layout_marginTop="4dp"
                 app:layout_constraintStart_toEndOf="@id/tv_dailyFoodFact"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
@@ -169,6 +202,8 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:src="@drawable/chevron"
+                android:tint="@color/md_theme_secondary"
+                android:layout_marginTop="4dp"
                 android:layout_marginStart="48dp"
                 app:layout_constraintStart_toEndOf="@id/tv_upcomingMed"
                 app:layout_constraintTop_toTopOf="parent"
@@ -213,6 +248,8 @@
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:src="@drawable/chevron"
+                android:tint="@color/md_theme_secondary"
+                android:layout_marginTop="4dp"
                 android:layout_marginStart="48dp"
                 app:layout_constraintStart_toEndOf="@id/tv_TD"
                 app:layout_constraintTop_toTopOf="parent"

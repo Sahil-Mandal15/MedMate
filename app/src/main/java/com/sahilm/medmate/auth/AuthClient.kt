@@ -106,6 +106,10 @@ class AuthClient(
             ClearCredentialStateRequest()
         )
         firebaseAuth.signOut()
+
+        saveUserDetails(
+            isLoggedIn = false
+        )
     }
 
     fun clearCredentialManager() {
