@@ -12,6 +12,7 @@ import com.sahilm.medmate.repository.MedmateRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import retrofit2.Response
+import java.util.Calendar
 import java.util.Date
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore("imp_items")
@@ -20,6 +21,8 @@ class MedMateViewModel(
     private val medmateRepository: MedmateRepository,
     private val context: Context
 ) {
+
+    private lateinit var calendar: Calendar
 
     companion object {
         val FOOD_FACT = stringPreferencesKey("food_fact")
@@ -44,10 +47,11 @@ class MedMateViewModel(
     }
 
     suspend fun getFoodFact(apiKey: String){
+        calendar = Calendar.getInstance()
        medmateRepository.getFoodFact(apiKey).let { details ->
            saveFactDetails(
                foodFact = details.body()!!.text.toString(),
-               factTime = Date().time.toString()
+               factTime = calendar.time.toString().substring(4, 11)
            )
        }
     }

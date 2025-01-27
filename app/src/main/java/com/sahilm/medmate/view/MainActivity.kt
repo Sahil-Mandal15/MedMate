@@ -1,5 +1,6 @@
 package com.sahilm.medmate.view
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
@@ -9,11 +10,15 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.sahilm.medmate.BuildConfig
 import com.sahilm.medmate.R
 import com.sahilm.medmate.auth.AuthClient
 import com.sahilm.medmate.databinding.ActivityMainBinding
+import com.sahilm.medmate.repository.MedmateRepository
+import com.sahilm.medmate.viewmodel.MedMateViewModel
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import java.util.Calendar
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,6 +26,10 @@ class MainActivity : AppCompatActivity() {
     private val binding get() = _binding!!
     private lateinit var authClient: AuthClient
     private lateinit var navController: NavController
+    private lateinit var medMateViewModel: MedMateViewModel
+    private lateinit var medmateRepository: MedmateRepository
+    private lateinit var calendar: Calendar
+    private val foodFactApiKey = BuildConfig.SPOONACULAR_API_KEY
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,10 +42,14 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
 
         authClient = AuthClient(this)
+        medmateRepository = MedmateRepository()
+        medMateViewModel = MedMateViewModel(medmateRepository, this)
+        calendar = Calendar.getInstance()
 
         lifecycleScope.launch {
             println("MainActivity, performing CheckLoginState")
             checkLoginState()
+            checkToDisplayDailyFoodFact(medMateViewModel, calendar)
         }
 
 
@@ -49,6 +62,16 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    private suspend fun checkToDisplayDailyFoodFact(medMateViewModel: MedMateViewModel, calendar: Calendar) {
+        val todaysDate = calendar.time.toString().substring(4, 11)
+
+        medMateViewModel.foodFactDetails.collect { details ->
+            if (details.factTime != calendar.time.toString().substring(4, 11)) {
+                medMateViewModel.getFoodFact(foodFactApiKey)
+            }
+        }
     }
 
     private fun checkForBottomNavBar(currentDestination: Int) {

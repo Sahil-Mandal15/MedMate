@@ -34,6 +34,10 @@ class HomeScreenFragment : Fragment() {
         val medmateRepository = MedmateRepository()
         val medMateViewModel = MedMateViewModel(medmateRepository, requireContext())
 
-
+        lifecycleScope.launch{
+             medMateViewModel.foodFactDetails.collect { details ->
+                binding.tvDailyFoodFactDisplay.text = details.foodFact
+            }
+        }
     }
 }
