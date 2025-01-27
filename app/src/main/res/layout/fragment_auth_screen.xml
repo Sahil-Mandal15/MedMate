@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/md_theme_background"
+    android:background="@color/md_theme_surface"
     tools:context=".view.fragments.AuthScreenFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -63,7 +63,7 @@
         android:id="@+id/ll_SignIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/md_theme_secondaryContainer"
+        android:background="@drawable/primary_circle_background"
         android:gravity="center"
         android:orientation="vertical"
         android:layout_margin="18dp"
@@ -87,20 +87,23 @@
             android:layout_margin="18dp"
             android:clickable="true"
             android:background="@drawable/rounded_button"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="76dp"
                 android:layout_height="76dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="84dp"
                 android:src="@drawable/google_logo"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="Sign In"
                 android:textSize="24sp"
-                android:textColor="@color/md_theme_surface"/>
+                android:textStyle="bold"
+                android:textColor="@color/md_theme_primary"/>
 
         </LinearLayout>
 

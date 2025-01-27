@@ -22,6 +22,7 @@ class HomeScreenFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var medMateViewModel: MedMateViewModel
     private lateinit var authClient: AuthClient
+    private var aiBtnClickCounter = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +36,10 @@ class HomeScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        if (aiBtnClickCounter != 1){
+            binding.llIntroMedMate.visibility = View.GONE
+        }
 
         val medmateRepository = MedmateRepository()
         medMateViewModel = MedMateViewModel(medmateRepository, requireContext())
@@ -58,6 +63,13 @@ class HomeScreenFragment : Fragment() {
 
         binding.ivUserPfp.setOnClickListener {
             findNavController().navigate(R.id.action_homeScreenFragment_to_profileScreenFragment)
+        }
+
+        binding.btnGetStartedAi.setOnClickListener {
+            aiBtnClickCounter ++
+
+                findNavController().navigate(R.id.action_homeScreenFragment_to_chatBotFragment)
+
         }
     }
 }

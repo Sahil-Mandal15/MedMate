@@ -9,13 +9,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Some Medicine"
+        android:textColor="@color/md_theme_secondary"
         android:textSize="16sp"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
+        android:layout_marginStart="135dp"
         android:text="9:30 A.M"
+        android:textColor="@color/md_theme_secondary"
         android:textSize="16sp"/>
 
 </LinearLayout>

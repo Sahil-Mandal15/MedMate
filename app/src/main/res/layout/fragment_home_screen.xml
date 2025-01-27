@@ -4,16 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/md_theme_background"
     tools:context=".view.fragments.HomeScreenFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/md_theme_background"
         tools:context=".view.fragments.HomeScreenFragment"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:background="@color/md_theme_surface">
 
     <LinearLayout
         android:id="@+id/ll_userInfo"
@@ -37,7 +36,6 @@
                 android:layout_height="wrap_content"
                 android:text="Hello"
                 android:textSize="20sp"
-                android:fontFamily="@font/lato"
                 android:textStyle="bold"/>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -47,6 +45,7 @@
                 android:text="Name"
                 android:layout_marginStart="12dp"
                 android:textSize="28sp"
+                android:textColor="@color/md_theme_primary"
                 android:fontFamily="@font/lato"
                 android:textStyle="bold"/>
 
@@ -84,7 +83,7 @@
         android:layout_margin="28dp"
         android:padding="18dp"
         android:elevation="64dp"
-        android:background="@drawable/circle_background"
+        android:background="@drawable/primary_circle_background"
             android:visibility="visible"
         app:layout_constraintTop_toBottomOf="@id/ll_userInfo"
         app:layout_constraintStart_toStartOf="parent"
@@ -96,6 +95,7 @@
             android:fontFamily="@font/lato"
             android:gravity="center"
             android:text="Introducing MedMate AI"
+            android:textColor="@color/md_theme_primary"
             android:textSize="28sp"
             android:textStyle="bold"/>
 
@@ -104,17 +104,21 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Get personalized medical assistance."
+            android:textColor="@color/md_theme_secondary"
             android:textSize="16sp"
             android:textStyle="italic"/>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_getStartedAi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="18sp"
             android:padding="12dp"
+            android:elevation="24dp"
             android:background="@drawable/rounded_button"
             android:text="Get Started"
+            android:textColor="@color/md_theme_primary"
             android:textStyle="bold"/>
 
     </LinearLayout>
@@ -163,7 +167,7 @@
             android:layout_marginEnd="28dp"
             android:padding="18dp"
             android:elevation="64dp"
-            android:background="@drawable/circle_background"
+            android:background="@drawable/secondary_circle_background"
             app:layout_constraintTop_toBottomOf="@id/cl_dffTitle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
@@ -173,6 +177,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                android:textColor="@color/md_theme_secondary"
                 android:textSize="16sp"/>
 
         </LinearLayout>
@@ -218,6 +223,8 @@
             android:layout_marginTop="18dp"
             android:layout_marginStart="18dp"
             android:layout_marginEnd="22dp"
+            android:padding="8dp"
+            android:background="@drawable/secondary_circle_background"
             tools:listitem="@layout/item_upcoming_medicine"
             app:layout_constraintTop_toBottomOf="@id/cl_medTitle"
             app:layout_constraintStart_toStartOf="parent"

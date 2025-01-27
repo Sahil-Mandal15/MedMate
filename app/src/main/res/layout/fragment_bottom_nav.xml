@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:background="@color/md_theme_background"
+    android:background="@color/md_theme_surface"
     tools:context=".view.fragments.BottomNavFragment">
 
     <LinearLayout
@@ -94,8 +94,8 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_reminder"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:src="@drawable/notification"
                 android:tint="@color/md_theme_secondary"
                 app:layout_constraintStart_toStartOf="parent"
@@ -104,8 +104,8 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_doc"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:src="@drawable/doc"
                 android:tint="@color/md_theme_secondary"
                 app:layout_constraintEnd_toEndOf="parent"

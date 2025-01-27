@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_homeScreenFragment_to_profileScreenFragment"
             app:destination="@id/profileScreenFragment" />
+        <action
+            android:id="@+id/action_homeScreenFragment_to_chatBotFragment"
+            app:destination="@id/chatBotFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileScreenFragment"
@@ -41,4 +44,9 @@
             android:id="@+id/action_profileScreenFragment_to_authScreenFragment"
             app:destination="@id/authScreenFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/chatBotFragment"
+        android:name="com.sahilm.medmate.view.fragments.ChatBotFragment"
+        android:label="fragment_chat_bot"
+        tools:layout="@layout/fragment_chat_bot" />
 </navigation>
