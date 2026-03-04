@@ -74,4 +74,14 @@ dependencies {
     implementation("androidx.room:room-runtime:2.8.4")
     ksp("androidx.room:room-compiler:2.8.4")
     implementation("androidx.room:room-ktx:2.8.4")
+
+    // Navigation
+    implementation("androidx.navigation:navigation-fragment-ktx:2.8.9")
+    implementation("androidx.navigation:navigation-ui-ktx:2.8.9")
+
+    // CardView
+    implementation("androidx.cardview:cardview:1.0.0")
+
+    // Fragment KTX
+    implementation("androidx.fragment:fragment-ktx:1.8.6")
 }

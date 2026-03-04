@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">MedMate</string>
+    <string name="tab_home">Home</string>
+    <string name="tab_reminders">Reminders</string>
+    <string name="food_fact_title">Did You Know?</string>
+    <string name="add_reminder">Add Reminder</string>
+    <string name="medicine_name_hint">Medicine name</string>
+    <string name="description_hint">Notes (optional)</string>
+    <string name="date_hint">Date</string>
+    <string name="time_hint">Time</string>
+    <string name="repeat_daily">Repeat Daily</string>
+    <string name="save">Save Reminder</string>
+    <string name="cancel">Cancel</string>
+    <string name="no_reminders">No reminders yet.\nTap + to add one.</string>
+    <string name="delete">Delete</string>
+    <string name="mark_as_taken">Mark as Taken</string>
+    <string name="taken">Taken</string>
+    <string name="upcoming_reminders">Upcoming Reminders</string>
+    <string name="loading">Loading…</string>
+    <string name="notification_permission_rationale">MedMate needs notification permission to remind you to take your medicine.</string>
+    <string name="exact_alarm_permission">Please allow exact alarm permission for reliable reminders.</string>
+    <string name="reminder_set">Reminder set for %1$s at %2$s</string>
 </resources>
